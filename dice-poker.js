@@ -23,6 +23,7 @@ let diceResult = document.getElementById("dice-result");
 let dice = [a, b, c, d, e];
 let diceResultArray = [aResult, bResult, cResult, dResult, eResult];
 let savedDice = ["", "", "", "", ""];
+let rolls = 0;
 
 // Save dice
 
@@ -73,15 +74,20 @@ e.addEventListener("change", ($event) => {
 
 // Roll dice
 rollButton.addEventListener("click", ($event) => {
-  // Prevents page reload
+  // Prevent page reload
   $event.preventDefault();
 
   for (i = 0; i < dice.length; i++) {
-    // Checks if die is saved
+    // Check if die is saved
     if (!diceForm.children[i].checked) {
       // Only if die is not saved, re-roll
       diceResult.children[i].textContent = Math.floor(Math.random() * 6 + 1);
     }
+  }
+  // Increment rolls
+  rolls++;
+  if (rolls === 3) {
+    rollButton.setAttribute("disabled", true);
   }
 });
 
