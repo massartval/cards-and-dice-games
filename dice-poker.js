@@ -71,6 +71,20 @@ e.addEventListener("change", ($event) => {
   }
 });
 
+// Roll dice
+rollButton.addEventListener("click", ($event) => {
+  // Prevents page reload
+  $event.preventDefault();
+
+  for (i = 0; i < dice.length; i++) {
+    // Checks if die is saved
+    if (!diceForm.children[i].checked) {
+      // Only if die is not saved, re-roll
+      diceResult.children[i].textContent = Math.floor(Math.random() * 6 + 1);
+    }
+  }
+});
+
 //console.log(a) == console.log(diceForm.children[0]) == console.log(dice[0]);
 
 // Save dice with a for loop (doesn't work yet)
@@ -84,17 +98,4 @@ for (i = 0; i < dice.length; i++) {
     }
   });
 }
-*/
-
-/*
-// Roll dice that are not saved
-rollButton.addEventListener("click", () => {
-  // Loop through the dice array
-  for (let i of dice) {
-    // Check if the die is saved
-    if (dice[i].value !== savedDice[i]) {
-      dice[i] = Math.floor(Math.random() * 6 + 1);
-    }
-  }
-});
 */
